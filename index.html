@@ -128,20 +128,17 @@
   .grid-note{width:min(1240px,100%);margin:0 auto;padding:16px 28px 6px;color:var(--muted);font-size:15px}
   .grid-note a{text-underline-offset:3px}
 
-  /* ---------- Reel ---------- */
-  .reel{background:var(--near);border-top:1px solid var(--line)}
-  .reel-in{width:min(1240px,100%);margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:1fr auto;gap:52px;align-items:center}
-  .reel h2{font-size:clamp(28px,4vw,44px);font-weight:200;letter-spacing:.12em;text-transform:uppercase;margin:0 0 18px}
-  .reel p{font-size:17px;color:#d5d2ca;margin:0 0 14px;max-width:52ch}
-  .reel p b{font-weight:500;color:#fff}
-  .reel .reel-note{font-size:14.5px;color:var(--muted);max-width:52ch}
-  .reel-frame{margin:0;width:min(340px,82vw);border:1px solid var(--line);background:#000}
-  .reel-frame video{display:block;width:100%;height:auto;aspect-ratio:656/1168;object-fit:cover;background:#000}
-  .reel-frame figcaption{padding:12px 16px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line)}
+  /* ---------- Reel (now inside About) ---------- */
+  .reel-frame{margin:0;width:100%;border:1px solid var(--line);background:#000}
+  .reel-frame video{display:block;width:100%;height:100%;aspect-ratio:656/1168;object-fit:cover;background:#000}
 
   /* ---------- About ---------- */
   .about{background:#0a0a0a;border-top:1px solid var(--line)}
-  .about-in{width:min(1240px,100%);margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .about-in{width:min(1240px,100%);margin:0 auto;padding:64px 28px;display:grid;grid-template-columns:1fr 1.15fr;gap:52px;align-items:center}
+  .about-media{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch}
+  .about-media .skyline,.about-media .reel-frame{height:100%}
+  .about-media .skyline{display:flex;flex-direction:column}
+  .about-media .skyline img{flex:1;min-height:0;object-fit:cover;object-position:center 18%;width:100%}
   .about h2{font-size:clamp(28px,4vw,44px);font-weight:200;letter-spacing:.12em;text-transform:uppercase;margin:0 0 18px}
   .about p{font-size:17px;color:#d5d2ca;margin:0 0 14px;max-width:56ch}
   .about p b{font-weight:500;color:#fff}
@@ -227,8 +224,8 @@
     .hero-inner{grid-template-columns:1fr;padding:110px 20px 38px}
     .hero-cta{justify-self:start}
     .grid{grid-template-columns:1fr 1fr;padding:0 16px}
-    .about-in,.grey-in,.foot-in,.reel-in{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
-    .reel-frame{justify-self:center}
+    .about-in,.grey-in,.foot-in{grid-template-columns:1fr;padding-left:20px;padding-right:20px}
+    .about-media{grid-template-columns:1fr 1fr}
     .stats{grid-template-columns:1fr 1fr}
     .link-cards{grid-template-columns:1fr}
     .section-head,.grid-note{padding-left:20px;padding-right:20px}
@@ -361,22 +358,6 @@
 
   </section>
 
-  <!-- REEL -->
-  <section class="reel" id="reel" aria-label="Video reel">
-    <div class="reel-in">
-      <div>
-        <h2>Reel</h2>
-        <p><b>Malik in motion.</b> A short loft walk clip — the movement, presence and fit that a still photo can't show. Shot vertical, the way casting and brands actually review on-camera work.</p>
-        <p class="reel-note">The clip plays muted on a loop. Use the player's controls to pause it or turn the sound on.</p>
-        <a class="btn ghost" href="#booking" style="margin-top:8px">Book on-camera work</a>
-      </div>
-      <figure class="reel-frame">
-        <video id="reelVideo" src="assets/reel-walk.mp4" poster="assets/reel-poster.jpg" autoplay muted loop playsinline controls preload="auto" aria-label="Short vertical video of Malik Zaire Martin walking toward the camera in black boxer briefs, holding a glass, in a loft apartment"></video>
-        <figcaption>Loft walk · Atlanta</figcaption>
-      </figure>
-    </div>
-  </section>
-
   <!-- ABOUT -->
   <section class="about" id="about" aria-label="About Malik Zaire Martin">
     <div class="about-in">
@@ -387,10 +368,15 @@
         <p>Off set, Malik is a content creator working to turn creative work into a business that can employ other people too. On set, that same mindset shows up simple: early, prepared, and easy to direct.</p>
         <a class="btn ghost" href="#booking" style="margin-top:8px">Book Malik</a>
       </div>
-      <figure class="skyline" style="margin:0">
-        <img src="assets/asset-08.webp" alt="Headshot of Malik Zaire Martin smiling in a denim shirt against a dark background" loading="lazy" decoding="async" />
-        <figcaption>Atlanta based · CHICAGO, IL · Open to travel</figcaption>
-      </figure>
+      <div class="about-media">
+        <figure class="skyline" style="margin:0">
+          <img src="assets/asset-08.webp" alt="Headshot of Malik Zaire Martin smiling in a denim shirt against a dark background" loading="lazy" decoding="async" />
+          <figcaption>Atlanta based · CHICAGO, IL · Open to travel</figcaption>
+        </figure>
+        <figure class="reel-frame" id="reel">
+          <video id="reelVideo" src="assets/reel-walk.mp4" poster="assets/reel-poster.jpg" autoplay muted loop playsinline controls preload="auto" aria-label="Short vertical video of Malik Zaire Martin walking toward the camera in black boxer briefs, holding a glass, in a loft apartment"></video>
+        </figure>
+      </div>
     </div>
   </section>
 
