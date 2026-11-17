@@ -125,8 +125,43 @@
   .tile p{margin:0;font-size:15px;max-width:30ch;color:#eceae4;text-shadow:0 1px 10px rgba(0,0,0,.65)}
   .tile .go{margin-top:14px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
   .tile.dimmed{opacity:.18}
+  .tile{cursor:zoom-in}
+  .tile img.ph{transition:transform .45s ease}
+  .tile:hover img.ph,.tile:focus-visible img.ph{transform:scale(1.03)}
+  .tile .expand-badge{position:absolute;top:18px;right:18px;z-index:3;display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:7px 10px;line-height:1;pointer-events:none;opacity:0;transform:translateY(-2px);transition:opacity .2s,transform .2s}
+  .tile:hover .expand-badge,.tile:focus-visible .expand-badge{opacity:1;transform:translateY(0)}
+  @media (hover:none){ .tile .expand-badge{opacity:1;transform:none} }
   .grid-note{width:min(1240px,100%);margin:0 auto;padding:16px 28px 6px;color:var(--muted);font-size:15px}
   .grid-note a{text-underline-offset:3px}
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.97);display:none;flex-direction:column;color:var(--white)}
+  .lightbox.open{display:flex}
+  .lb-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);flex:none}
+  .lb-meta{min-width:0}
+  .lb-title{font-size:16px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lb-counter{font-size:13px;letter-spacing:.18em;color:var(--muted);margin-top:2px}
+  .lb-close{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;width:44px;height:44px;min-height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none;font-size:22px;line-height:1}
+  .lb-close:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .lb-stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:pan-y}
+  .lb-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.35);color:#fff;width:52px;height:52px;min-height:52px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;z-index:2}
+  .lb-nav:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+  .lb-nav svg{width:22px;height:22px;fill:#fff}
+  .lb-prev{left:14px}
+  .lb-next{right:14px}
+  .lb-bottom{flex:none;padding:14px 18px 18px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  .lb-caption{font-size:15px;color:#d8d5cd;max-width:62ch;margin:0}
+  .lb-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .lb-book{background:var(--btn);color:var(--btn-text);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:12px 20px;min-height:44px;display:inline-flex;align-items:center}
+  .lb-hint{font-size:13px;color:var(--dim);letter-spacing:.06em}
+  body.lb-locked{overflow:hidden}
+  @media (max-width:640px){
+    .lb-nav{width:44px;height:44px;min-height:44px}
+    .lb-prev{left:8px}.lb-next{right:8px}
+    .lb-bottom{flex-direction:column;align-items:flex-start}
+    .lb-caption{font-size:14px}
+  }
 
   /* ---------- Reel (now inside About) ---------- */
   .reel-frame{margin:0;width:100%;border:1px solid var(--line);background:#000}
@@ -313,48 +348,48 @@
     <div class="grid" id="portfolioGrid">
       <article class="tile" data-cat="print">
         <img class="ph" src="assets/asset-02.webp" alt="Malik Zaire Martin in a red knit sweater and red Calvin Klein trunks, studio editorial" loading="eager" decoding="async" />
-        <span class="num">01</span>
+        <span class="num">01</span><span class="expand-badge" aria-hidden="true">⤢ Enlarge</span>
         <div>
           <h3>Editorial</h3>
           <a class="go" href="#booking">Book editorial</a></div>
       </article>
       <article class="tile" data-cat="commercial">
         <img class="ph" src="assets/asset-03.webp" alt="Malik Zaire Martin in a denim western shirt, commercial headshot" loading="eager" decoding="async" />
-        <span class="num">02</span>
+        <span class="num">02</span><span class="expand-badge" aria-hidden="true">⤢ Enlarge</span>
         <div>
           <h3>Commercial &amp; E-commerce</h3>
           <a class="go" href="#booking">Book commercial</a></div>
       </article>
       <article class="tile" data-cat="print commercial">
         <img class="ph" src="assets/asset-04.webp" alt="Malik Zaire Martin shirtless in black trunks, fitness physique study — photo by @iamcarlosjones" loading="eager" decoding="async" />
-        <span class="num">03</span>
+        <span class="num">03</span><span class="expand-badge" aria-hidden="true">⤢ Enlarge</span>
         <div>
           <h3>Fitness &amp; Athletic</h3>
           <a class="go" href="#booking">Book fitness</a></div>
       </article>
       <article class="tile" data-cat="commercial print">
         <img class="ph" src="assets/asset-05.webp" alt="Malik Zaire Martin in coral Calvin Klein trunks against a tan studio backdrop — photo by Shawn Andre" loading="eager" decoding="async" />
-        <span class="num">04</span>
+        <span class="num">04</span><span class="expand-badge" aria-hidden="true">⤢ Enlarge</span>
         <div>
           <h3>Underwear &amp; Swim</h3>
           <a class="go" href="#booking">Book underwear &amp; swim</a></div>
       </article>
       <article class="tile" data-cat="print screen">
         <img class="ph" src="assets/asset-06.webp" alt="Malik Zaire Martin full-length in a black dress shirt, grey tie and trousers" loading="eager" decoding="async" style="object-position:center 8%" />
-        <span class="num">05</span>
+        <span class="num">05</span><span class="expand-badge" aria-hidden="true">⤢ Enlarge</span>
         <div>
           <h3>Runway &amp; Events</h3>
           <a class="go" href="#booking">Book an event</a></div>
       </article>
       <article class="tile" data-cat="screen commercial">
         <img class="ph" src="assets/asset-07.webp" alt="Black-and-white headshot of Malik Zaire Martin in a white shirt and floral tie" loading="eager" decoding="async" />
-        <span class="num">06</span>
+        <span class="num">06</span><span class="expand-badge" aria-hidden="true">⤢ Enlarge</span>
         <div>
           <h3>Acting &amp; On-Camera</h3>
           <a class="go" href="#booking">Book on-camera</a></div>
       </article>
     </div>
-    <p class="grid-note">Bookings are open now. <a href="#booking">Start a booking →</a></p>
+    <p class="grid-note">Tap any photo to enlarge — swipe or use the arrows to browse the full set. Bookings are open now. <a href="#booking">Start a booking →</a></p>
 
   </section>
 
@@ -552,6 +587,33 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Portfolio photo viewer" aria-hidden="true">
+  <div class="lb-top">
+    <div class="lb-meta">
+      <div class="lb-title" id="lbTitle">Editorial</div>
+      <div class="lb-counter" id="lbCounter">1 / 6</div>
+    </div>
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close photo viewer">&times;</button>
+  </div>
+  <div class="lb-stage" id="lbStage">
+    <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 4.5 8 12l7.5 7.5-1.8 1.8L4.4 12l9.3-9.3z"/></svg>
+    </button>
+    <img id="lbImage" alt="" draggable="false" />
+    <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 19.5 16 12 8.5 4.5l1.8-1.8 9.3 9.3-9.3 9.3z"/></svg>
+    </button>
+  </div>
+  <div class="lb-bottom">
+    <p class="lb-caption" id="lbCaption"></p>
+    <div class="lb-actions">
+      <span class="lb-hint">Swipe · ← → keys · Esc to close</span>
+      <a class="lb-book" id="lbBook" href="#booking">Book this look</a>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   // Header shading on scroll
@@ -591,6 +653,154 @@
       });
     });
   });
+
+  // Portfolio lightbox — enlarge + swipe / arrow through photos
+  var lightbox = document.getElementById('lightbox');
+  var lbImage = document.getElementById('lbImage');
+  var lbTitle = document.getElementById('lbTitle');
+  var lbCounter = document.getElementById('lbCounter');
+  var lbCaption = document.getElementById('lbCaption');
+  var lbBook = document.getElementById('lbBook');
+  var lbClose = document.getElementById('lbClose');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var lbStage = document.getElementById('lbStage');
+  var lbItems = [];
+  var lbIndex = 0;
+  var lbLastFocus = null;
+
+  function collectLbItems(clickedTile){
+    var visible = tiles.filter(function(t){ return !t.classList.contains('dimmed'); });
+    var list = visible.length ? visible : tiles.slice();
+    // If the clicked tile was filtered out (dimmed), fall back to the full set so it still opens
+    if (list.indexOf(clickedTile) === -1) list = tiles.slice();
+    return list.map(function(t){
+      var img = t.querySelector('img.ph');
+      var h = t.querySelector('h3');
+      var book = t.querySelector('a.go');
+      return {
+        tile: t,
+        src: img ? img.getAttribute('src') : '',
+        alt: img ? img.getAttribute('alt') : '',
+        title: h ? h.textContent.trim() : 'Portfolio',
+        bookHref: book ? book.getAttribute('href') : '#booking',
+        bookText: book ? book.textContent.trim() : 'Book this look'
+      };
+    });
+  }
+
+  function renderLb(){
+    if (!lbItems.length) return;
+    var item = lbItems[lbIndex];
+    lbImage.src = item.src;
+    lbImage.alt = item.alt;
+    lbTitle.textContent = item.title;
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + lbItems.length;
+    lbCaption.textContent = item.alt;
+    lbBook.href = item.bookHref;
+    lbBook.textContent = item.bookText;
+    // Preload neighbours for smoother swiping
+    [lbIndex - 1, lbIndex + 1].forEach(function(i){
+      if (lbItems[i]) { var pre = new Image(); pre.src = lbItems[i].src; }
+    });
+  }
+
+  function openLb(tile){
+    lbLastFocus = document.activeElement;
+    lbItems = collectLbItems(tile);
+    var start = 0;
+    lbItems.forEach(function(it, i){ if (it.tile === tile) start = i; });
+    lbIndex = start;
+    renderLb();
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lb-locked');
+    if (lbClose) lbClose.focus();
+  }
+
+  function closeLb(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-locked');
+    lbImage.removeAttribute('src');
+    if (lbLastFocus && lbLastFocus.focus) lbLastFocus.focus();
+  }
+
+  function stepLb(dir){
+    if (!lbItems.length) return;
+    lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+    renderLb();
+  }
+
+  tiles.forEach(function(tile){
+    tile.setAttribute('tabindex', '0');
+    tile.setAttribute('role', 'button');
+    var h = tile.querySelector('h3');
+    tile.setAttribute('aria-label', 'Enlarge photo: ' + (h ? h.textContent.trim() : 'Portfolio photo'));
+    tile.addEventListener('click', function(e){
+      // Let the booking link inside the tile work as a link
+      if (e.target.closest && e.target.closest('a')) return;
+      openLb(tile);
+    });
+    tile.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (e.target.closest && e.target.closest('a')) return;
+        e.preventDefault();
+        openLb(tile);
+      }
+    });
+  });
+
+  if (lbClose) lbClose.addEventListener('click', closeLb);
+  if (lbPrev) lbPrev.addEventListener('click', function(){ stepLb(-1); });
+  if (lbNext) lbNext.addEventListener('click', function(){ stepLb(1); });
+  if (lbBook) lbBook.addEventListener('click', closeLb);
+  // Tap backdrop (outside the image / controls) to close
+  if (lightbox) lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox || e.target === lbStage) closeLb();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowLeft') stepLb(-1);
+    else if (e.key === 'ArrowRight') stepLb(1);
+  });
+
+  // Touch swipe
+  var touchStartX = null, touchStartY = null;
+  if (lbStage) {
+    lbStage.addEventListener('touchstart', function(e){
+      if (!e.touches || !e.touches.length) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, {passive:true});
+    lbStage.addEventListener('touchend', function(e){
+      if (touchStartX === null) return;
+      var t = e.changedTouches && e.changedTouches[0];
+      if (!t) { touchStartX = null; return; }
+      var dx = t.clientX - touchStartX;
+      var dy = t.clientY - touchStartY;
+      touchStartX = null; touchStartY = null;
+      if (Math.abs(dx) < 42 || Math.abs(dx) < Math.abs(dy)) return;
+      stepLb(dx < 0 ? 1 : -1);
+    }, {passive:true});
+    // Mouse / pointer drag swipe for desktop trackpads and mice
+    var pointerStartX = null;
+    lbStage.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'touch') return;
+      pointerStartX = e.clientX;
+    });
+    lbStage.addEventListener('pointerup', function(e){
+      if (pointerStartX === null || e.pointerType === 'touch') return;
+      var dx = e.clientX - pointerStartX;
+      pointerStartX = null;
+      if (Math.abs(dx) < 48) return;
+      // Don't treat a simple click on nav buttons as a swipe
+      if (e.target.closest && e.target.closest('button')) return;
+      stepLb(dx < 0 ? 1 : -1);
+    });
+  }
 
   // Booking form -> mailto (nothing is sent by this page itself)
   var form = document.getElementById('bookForm');
